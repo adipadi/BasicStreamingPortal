@@ -1,5 +1,4 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
 
 // const assets = [
 //   { '@id': 1, title: 'The first', description: 'The first asset blabla' },
@@ -19,7 +18,8 @@ import { browserHistory } from 'react-router';
 class AssetCarousel extends React.Component {
 
   static propTypes = {
-    assets: React.PropTypes.array
+    assets: React.PropTypes.array,
+    onAssetChange: React.PropTypes.func
   };
 
   componentDidMount() {
@@ -35,16 +35,7 @@ class AssetCarousel extends React.Component {
     const assets = this.props.assets;
     return (
       <div className="asset-carousel">
-        {assets.map(a => {
-          const imgUrl = (a.imageVersions && a.imageVersions.image && a.imageVersions.image.url) ||
-           'http://images.hngn.com/data/images/full/134342/mr-robot.jpg';
-          return (
-            <div key={a['@id']} className="asset" onClick={this.onClick.bind(this, a['@id'])}>
-              <div className="cover" style={{ backgroundImage: `url("${imgUrl}")` }}/>
-              {a.title}
-            </div>
-          );
-        })}
+
       </div>
     );
   }

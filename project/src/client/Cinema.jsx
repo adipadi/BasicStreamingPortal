@@ -24,13 +24,16 @@ class Cinema extends React.Component {
     this.props.actions.getAssets();
   }
 
+  onAssetChange = (id) => {
+
+  }
+
   render() {
     return (
       <div className="cinema">
         Welcome!
         <div className="playerWrapper">
           <Player/>
-          <AssetCarousel assets={this.props.assets}/>
         </div>
       </div>
     );
