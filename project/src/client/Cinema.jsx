@@ -31,7 +31,7 @@ class Cinema extends React.Component {
   render() {
     return (
       <div className="cinema">
-        Welcome!
+        Welcome! My chabge
         <div className="playerWrapper">
           <Player/>
         </div>
