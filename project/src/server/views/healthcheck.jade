@@ -1,0 +1,36 @@
+doctype html
+html
+  head
+    title= title
+
+  style.
+    ul {
+      list-style: none;
+    }
+
+    li {
+      margin-bottom: 20px;
+    }
+
+    li.error {
+      color: red;
+    }
+
+  body
+    block content
+      div#content
+      ul.services
+        each service in data
+            li.service(class="#{service.healthy ? 'healthy' : 'error'}")
+              div.service-message
+                span Service:
+                span= service.service
+              div.service-url
+                span Url:
+                span= service.url
+              div.service-health
+                span Healthy:
+                span= service.healthy
+              div.service-message
+                span Message:
+                span= service.message

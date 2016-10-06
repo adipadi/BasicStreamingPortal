@@ -1,0 +1,14 @@
+node_modules
+public
+.sass-cache
+coverage
+.DS_Store
+dist
+
+npm-debug.log
+ansible.tar
+.idea
+newrelic_agent.log
+tmp
+revision.json
+vimond-cms*

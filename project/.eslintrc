@@ -1,0 +1,58 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "padded-blocks": [1, { "classes": "always" }],
+    "class-methods-use-this": 1,
+    "func-names": 0,
+    "no-cond-assign": [2, "except-parens"],
+    "no-unused-vars": [1, { "vars": "local", "args": "none" }],
+    "space-before-function-paren": 0,
+    "import/no-unresolved": [2, { "ignore": ["actions", "ajax/request", "ajax", "components", "lib", "renderers", "validation" ] }],
+    "import/extensions": [0, "never"],
+    "import/imports-first": [0, "never"],
+    "import/no-extraneous-dependencies": 0,
+    "no-extra-boolean-cast": 0,
+    "arrow-parens": 0,
+    "no-plusplus": 0,
+    "no-param-reassign": ["error", { "props": false }],
+    "no-console": [1, { "allow": ["error"] }],
+    "no-trailing-spaces": ["error", { "skipBlankLines": true }],
+    "jsx-a11y/no-static-element-interactions": 0,
+    "strict": 0,
+    "dot-notation": 0,
+    "max-len": [2, 125, { "ignoreTrailingComments": true, "ignoreUrls": true }],
+    "object-shorthand": [1, "always"],
+    "comma-dangle": [2, "only-multiline"],
+    "react/no-multi-comp": [0, { "ignoreStateless": true }],
+    "react/forbid-prop-types": [2, { "forbid": ['any'] }],
+    "react/jsx-first-prop-new-line": 0,
+    "react/react-in-jsx-scope": 0,
+    "react/jsx-space-before-closing": 0,
+    "react/jsx-boolean-value": 0,
+    "react/jsx-closing-bracket-location": 0,
+    "react/prefer-stateless-function": 0,
+    "react/no-string-refs": 0,
+    "react/jsx-no-bind": [1, {
+      "ignoreRefs": true,
+      "allowArrowFunctions":  false,
+      "allowBind": true # This will be set to false
+    }],
+    "no-mixed-operators": [
+        "error",
+        {
+            "groups": [
+                ["&", "|", "^", "~", "<<", ">>", ">>>"],
+                ["==", "!=", "===", "!==", ">", ">=", "<", "<="],
+                ["&&", "||"],
+                ["in", "instanceof"]
+            ],
+            "allowSamePrecedence": true
+        }
+    ]
+  }
+}
