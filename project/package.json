@@ -203,8 +203,6 @@
     "svg-inline-loader": "0.7.1",
     "url-parse": "*",
     "validate.js": "0.10.0",
-    "vimond-react-icons": "1.0.57",
-    "vimond-web-components": "1.1.26",
     "winston": "^2.2.0",
     "xhr": "2.2.2",
     "xmlhttprequest": "1.8.0"
