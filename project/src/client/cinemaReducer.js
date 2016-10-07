@@ -70,7 +70,7 @@ export default function featureReducer(state = initialState, action) {
       const id = state.showMovieInformationWithId === action.id ? false : action.id;
       return {
         ...state,
-        showMovieInformationWithId: id
+        showMovieInformationWithId: action.id
       };
     }
 
