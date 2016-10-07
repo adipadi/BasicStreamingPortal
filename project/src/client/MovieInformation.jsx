@@ -55,7 +55,7 @@ class MovieInformation extends React.Component {
             <div className="rating">IMDB Rating {movieData.imdbRating}
               <StarRatingComponent
                 name="rating" /* name of the radio input, it is required */
-                value={(movieData.imdbRating / 2)} /* number of selected icon (`0` - none, `1` - first) */
+                value={(movieData.imdbRating / 1.6)} /* number of selected icon (`0` - none, `1` - first) */
                 editing={false} /* is component available for editing, default `true` */
                 renderStarIcon={() => (<i className="fa fa-star" aria-hidden="true"></i>)}
                 renderStarIconHalf={() => (<i className="fa fa-star-half-o" aria-hidden="true"></i>)}
@@ -66,9 +66,7 @@ class MovieInformation extends React.Component {
           <div className="col">
             <div className="actors"><h3 className="sub-header">Actors</h3> <br/> {movieData.Actors}</div>
             <div className="writers"><h3 className="sub-header">Writer(s)</h3> <br/> {movieData.Writer}</div>
-
           </div>
-
           <div className="col">
             <div className="awards"><h3 className="sub-header">Awards</h3> <br/> {movieData.Awards}</div>
             <div className="director"><h3 className="sub-header">Director</h3> <br/> {movieData.Director}</div>

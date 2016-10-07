@@ -7,13 +7,18 @@ const initialState = {
   numberOfHits: 0,
   movieInformationArray: [],
   showMovieInformationWithId: false,
-  loading: false
+  assetsLoading: false,
+  movieInformationLoading: false,
+  showInitialHeader: false
 };
 
 export default function featureReducer(state = initialState, action) {
   switch (action.type) {
     case CinemaConstants.GET_ASSETS_REQUEST: {
-      return state;
+      return {
+        ...state,
+        assetsLoading: true,
+      };
     }
 
     case CinemaConstants.GET_ASSETS_SUCCESS: {
@@ -23,7 +28,9 @@ export default function featureReducer(state = initialState, action) {
       return {
         ...state,
         assets,
-        numberOfHits
+        numberOfHits,
+        assetsLoading: false,
+        showInitialHeader: true
       };
     }
 
@@ -34,7 +41,7 @@ export default function featureReducer(state = initialState, action) {
     case CinemaConstants.GET_MOVIE_INFORMATION_FOR_ASSET_ID_REQUEST: {
       return {
         ...state,
-        loading: true,
+        movieInformationLoading: true,
       };
     }
 
@@ -48,14 +55,14 @@ export default function featureReducer(state = initialState, action) {
       return {
         ...state,
         movieInformationArray: arr,
-        loading: false
+        movieInformationLoading: false,
       };
     }
 
     case CinemaConstants.GET_MOVIE_INFORMATION_FOR_ASSET_ID_FAILURE: {
       return {
         ...state,
-        loading: false,
+        movieInformationLoading: false,
       };
     }
 
@@ -70,7 +77,14 @@ export default function featureReducer(state = initialState, action) {
       const id = state.showMovieInformationWithId === action.id ? false : action.id;
       return {
         ...state,
-        showMovieInformationWithId: action.id
+        showMovieInformationWithId: id
+      };
+    }
+
+    case CinemaConstants.TOGGLE_INITIAL_HEADER: {
+      return {
+        ...state,
+        showInitialHeader: !state.showInitialHeader
       };
     }
 

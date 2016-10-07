@@ -7,6 +7,7 @@ import AssetCarousel from './AssetCarousel';
 import MovieInformation from './MovieInformation';
 import _ from 'lodash';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import Loading from './Loader';
 
 function mapDispatchToProps(dispatch) {
   return { actions: bindActionCreators(cinemaActions, dispatch) };
@@ -24,11 +25,18 @@ class Cinema extends React.Component {
     playingAssetId: React.PropTypes.number,
     movieInformationArray: React.PropTypes.array,
     showMovieInformationWithId: React.PropTypes.string,
-    loading: React.PropTypes.bool
+    movieInformationLoading: React.PropTypes.bool,
+    assetsLoading: React.PropTypes.bool,
+    showInitialHeader: React.PropTypes.bool
   };
 
   componentDidMount() {
     this.props.actions.getAssets();
+    window.addEventListener('scroll', this.checkScrollBottom, false);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.checkScrollBottom, false);
   }
 
   onAssetChange = (id) => {
@@ -44,8 +52,23 @@ class Cinema extends React.Component {
     this.props.actions.showMoviewInformationWithId(id);
   }
 
+  checkScrollBottom = () => {
+    if ((document.body.scrollHeight ===
+        document.body.scrollTop +
+        window.innerHeight) && this.props.showInitialHeader) {
+      this.props.actions.toggleInitialHeader();
+    }
+  }
+
   render() {
     let movieInformation;
+    const initialHeader = this.props.showInitialHeader ? (
+      <div className="initial-load-header">
+        <h1>Scroll down to view movies</h1>
+        <i className="fa fa-arrow-down fa-6" aria-hidden="true"/>
+      </div>
+    ) : null;
+
     if (this.props.showMovieInformationWithId) {
       const movieData = _.find(this.props.movieInformationArray, m => m.assetId === this.props.showMovieInformationWithId);
       movieInformation = (
@@ -53,7 +76,7 @@ class Cinema extends React.Component {
           id={this.props.showMovieInformationWithId}
           movieData={movieData}
           getMovieInformation={this.props.actions.getMovieInformation}
-          loading={this.props.loading}/>
+          loading={this.props.movieInformationLoading}/>
       );
     }
     return (
@@ -68,7 +91,13 @@ class Cinema extends React.Component {
           {movieInformation}
         </ReactCSSTransitionGroup>
         <Player assetId={this.props.playingAssetId}/>
-        <AssetCarousel onAssetHover={this.onAssetHover} assets={this.props.assets} onAssetChange={this.onAssetChange}/>
+        {initialHeader}
+        {
+          this.props.assetsLoading ?
+          <Loading title="Loading assets"/> :
+          <AssetCarousel playingAssetId={this.props.playingAssetId}
+            onAssetHover={this.onAssetHover} assets={this.props.assets} onAssetChange={this.onAssetChange}/>
+        }
       </div>
     );
   }
