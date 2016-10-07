@@ -1,7 +1,5 @@
 import React from 'react';
 
-const player = window.vimond.player;
-const query = player.getQueryParametersAsObject();
 // const itemId = query.itemId;
 // const startPosition = query.startPosition;
 
@@ -35,7 +33,7 @@ const config = {
     apiServer: '',
   },
   logging: {
-    global: 'DEBUG'
+    global: ''
   },
   userInactivityInterval: 2000
 };
@@ -45,15 +43,17 @@ const dependencies = {};
 class Player extends React.Component {
 
   static propTypes = {
-    assetId: React.PropTypes.number
+    assetId: React.PropTypes.string
   };
 
   componentDidMount() {
     if (window.vimond.player) {
+      const player = window.vimond.player;
+      const query = player.getQueryParametersAsObject();
       const assetId = this.props.assetId || query.assetId || 1072795;
 
       player.insert({
-        autoplay: false,
+        autoplay: true,
         assetId
       },
         {
@@ -71,8 +71,11 @@ class Player extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.assetId && nextProps.assetId !== this.props.assetId) {
-      
+    if (nextProps.assetId && nextProps.assetId !== this.props.assetId && window.playerApi) {
+      const playerApi = window.playerApi;
+      const assetId = nextProps.assetId;
+      playerApi.changePlayback(assetId);
+      playerApi.start();
     }
   }
 
