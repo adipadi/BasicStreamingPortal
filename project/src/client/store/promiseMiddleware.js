@@ -61,9 +61,9 @@ export default function promiseMiddleware() {
       (result) => {
 
         // SIMULATING SLOW REQUESTS
-        setTimeout(function(){
+        // setTimeout(function(){
           next({ ...rest, result, type: SUCCESS });
-        }, 2000);
+        // }, 2000);
 
         // All redirects should go here
         if (result && result.data && result.data.redirect) {

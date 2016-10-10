@@ -15,7 +15,9 @@ export const TOGGLE_INITIAL_HEADER = 'TOGGLE_INITIAL_HEADER';
 
 
 export function getAssets() {
-  const url = '/api/web/search/categories/2220091/assets?query=published:true';
+  const url = '/api/web/search/categories/2320/assets';
+  // const url = '/api/web/search/categories/2220091/assets?query=published:true';
+
   return {
     types: [GET_ASSETS_REQUEST, GET_ASSETS_SUCCESS, GET_ASSETS_FAILURE],
     promise: Request.get(url)

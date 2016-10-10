@@ -52,6 +52,12 @@ class Cinema extends React.Component {
     this.props.actions.showMoviewInformationWithId(id);
   }
 
+  getMovieInformation = (id) => {
+    const asset = _.find(this.props.assets, (a) => a['@id'] === id);
+    const title = asset && asset.title;
+    this.props.actions.getMovieInformation(id, title);
+  }
+
   checkScrollBottom = () => {
     if ((document.body.scrollHeight ===
         document.body.scrollTop +
@@ -75,7 +81,7 @@ class Cinema extends React.Component {
         <MovieInformation
           id={this.props.showMovieInformationWithId}
           movieData={movieData}
-          getMovieInformation={this.props.actions.getMovieInformation}
+          getMovieInformation={this.getMovieInformation}
           loading={this.props.movieInformationLoading}/>
       );
     }

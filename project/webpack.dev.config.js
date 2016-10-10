@@ -64,10 +64,10 @@ module.exports = {
   devServer: {
     hot: true,
     proxy: {
-    '/api/*': {
-      target: 'http://sumo.tv2.no',
-      secure: false,
-    },
+    // '/api/*': {
+    //   target: 'https://vimond-rest-api.ha.expo-first.vimondtv.com',
+    //   secure: true,
+    // },
       '*': `http://127.0.0.1:${process.env.PORT || 3080}`
     },
     publicPath: '/javascripts/'

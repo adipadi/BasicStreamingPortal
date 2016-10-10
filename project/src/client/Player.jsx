@@ -50,7 +50,7 @@ class Player extends React.Component {
     if (window.vimond.player) {
       const player = window.vimond.player;
       const query = player.getQueryParametersAsObject();
-      const assetId = this.props.assetId || query.assetId || 1072795;
+      const assetId = this.props.assetId || query.assetId || 6967;
 
       player.insert({
         autoplay: true,

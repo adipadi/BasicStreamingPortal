@@ -23,12 +23,12 @@ class MovieInformation extends React.Component {
 
   getMovieInformation = (props) => {
     if (!props.movieData && props.getMovieInformation && props.id && !props.loading) {
-      const justRandomArray = ['force+awakens', 'forrest+gump', 'shoot+em+up', 'superman+returns',
-      'the+phantom+menace', 'scary+movie'];
-      const min = Math.ceil(0);
-      const max = Math.floor(6);
-      const nr = Math.floor(Math.random() * (max - min)) + min;
-      props.getMovieInformation(props.id, justRandomArray[nr]);
+      // const justRandomArray = ['force+awakens', 'forrest+gump', 'shoot+em+up', 'superman+returns',
+      // 'the+phantom+menace', 'scary+movie'];
+      // const min = Math.ceil(0);
+      // const max = Math.floor(6);
+      // const nr = Math.floor(Math.random() * (max - min)) + min;
+      props.getMovieInformation(props.id);
     }
   }
 

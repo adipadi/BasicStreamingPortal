@@ -55,7 +55,7 @@ class AssetCarousel extends React.Component {
               <i className={`fa ${isPlaying}`} aria-hidden="true"
                 onMouseOver={this.onMouseOver.bind(this, a['@id'])}
                 onMouseLeave={this.onMouseLeave.bind(this, a['@id'])}/>
-              {a.title}
+              <span>{a.title}</span>
             </div>
           );
         })}

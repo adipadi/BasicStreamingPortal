@@ -13,6 +13,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const config = require('../../config.js');
+const request = require('../../lib/request');
 
 const app = express();
 // view engine setup
@@ -35,6 +36,17 @@ app.get('/ping', (req, res) => {
   res.send('pong').status(200).end();
 });
 
+app.get('/api*', (req, res) => {
+  const url = `http://vimond-rest-api.ha.expo-first.vimondtv.com/${req.originalUrl}`;
+  request.get(url, { accept: 'application/json;v=2', headers: {'x-vimond-tenant': 'workshop'}})
+  .then(result => {
+    res.send(result.body).status(result.statusCode);
+  }, error => {
+    res.send(result.body).status(result.statusCode);
+  });
+});
+
+
 app.get('*', (req, res) => {
   res.render('index', { title: 'Cinema' });
 });
@@ -53,6 +65,8 @@ app.use((err, req, res /* , next */) => {
   res.status(err.status || 500).send(err.data);
 });
 
+
+
 app.set('port', process.env.PORT || config.port);
 
 // app.listen(app.get('port'));
@@ -60,6 +74,6 @@ app.set('port', process.env.PORT || config.port);
 require('./socketIo').setup(app.listen(app.get('port')));
 
 
-console.info(`Cypher cinema is running on ${app.get('port')}`);
+console.info(`UiB cinema is running on ${app.get('port')}`);
 
 module.exports = app;

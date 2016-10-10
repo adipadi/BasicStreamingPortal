@@ -2,7 +2,6 @@
 
 const request = require('request');
 const Promise = require('promise');
-const logger = require('./logger');
 const _ = require('lodash');
 
 const getHeaders = function (options, token) {
@@ -45,7 +44,7 @@ function commonRequestHandler(url, suppliedOptions, token, method) {
   let options = {};
 
   if (url) {
-    logger.debug('URL supplied, reading options', url);
+    // logger.debug('URL supplied, reading options', url);
     const defaultOptions = { url, json: true };
     options = _.assign({}, defaultOptions, suppliedOptions);
     options.headers = getHeaders(suppliedOptions, token);
@@ -55,16 +54,16 @@ function commonRequestHandler(url, suppliedOptions, token, method) {
     options = suppliedOptions;
   }
 
-  logger.debug('Options', JSON.stringify(options));
+  // logger.debug('Options', JSON.stringify(options));
 
   return new Promise((resolve, reject) => {
-    logger.debug('Preparing request');
+    // logger.debug('Preparing request');
     options.rejectUnauthorized = false;
     method(options, (error, response, body) => {
-      logger.debug('Response from server');
-      logger.debug('Error:', error);
-      logger.debug('Body', body);
-      logger.silly('Response object:', response);
+      // logger.debug('Response from server');
+      // logger.debug('Error:', error);
+      // logger.debug('Body', body);
+      // logger.silly('Response object:', response);
 
       if (!error && response.statusCode < 400) {
         resolve({ response, body });
@@ -99,7 +98,7 @@ exports.delete = function (url, options, token) {
  *
  */
 exports.upload = function (url, suppliedOptions, token) {
-  logger.debug(`options.length: ${suppliedOptions.length}`);
+  // logger.debug(`options.length: ${suppliedOptions.length}`);
   let promise;
 
   for (let counter = 0; counter < suppliedOptions.length; counter++) {
@@ -120,7 +119,7 @@ exports.upload = function (url, suppliedOptions, token) {
     try {
       // Converting base64 image to binary
       const data = new Buffer(options.formData.file.base64Img, 'base64');
-      logger.debug('[upload] Image converted to Binary');
+      // logger.debug('[upload] Image converted to Binary');
       // Create request payload with appropriate image details
       image.formData = {};
       image.formData.file = {};
@@ -134,14 +133,14 @@ exports.upload = function (url, suppliedOptions, token) {
       image.formData.tags = options.formData.tagList.join();
       image.formData.scaledImageUrl = options.formData.file.preview;
     } catch (e) {
-      logger.error(`[upload] Data format error: ${e}`);
+      // logger.error(`[upload] Data format error: ${e}`);
     }
 
-    logger.debug('[upload] image loaded correctly, posting it to service');
+    // logger.debug('[upload] image loaded correctly, posting it to service');
 
     promise = commonRequestHandler(null, image, token, request.post);
 
-    logger.debug('[upload] Exit');
+    // logger.debug('[upload] Exit');
   }
 
   return promise;
