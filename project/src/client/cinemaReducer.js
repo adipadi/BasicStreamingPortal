@@ -46,19 +46,7 @@ export default function featureReducer(state = initialState, action) {
       };
     }
 
-    case CinemaConstants.GET_MOVIE_INFORMATION_FOR_ASSET_ID_SUCCESS: {
-      const exists = _.find(state.movieInformationArray, m => m.id === action.id);
-      if (exists) {
-        return { ...state };
-      }
-      const arr = state.movieInformationArray.slice();
-      arr.push({ assetId: action.id, ...action.result.data });
-      return {
-        ...state,
-        movieInformationArray: arr,
-        movieInformationLoading: false,
-      };
-    }
+    // Make a case for successfully retrieved movie information
 
     case CinemaConstants.GET_MOVIE_INFORMATION_FOR_ASSET_ID_FAILURE: {
       return {

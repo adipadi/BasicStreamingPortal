@@ -22,7 +22,7 @@ export function getAssets() {
 }
 
 export function getMovieInformation(id, title) {
-  const url = `http://www.omdbapi.com/?t=${title}&y=&plot=short&r=json`;
+  const url = '';
   return {
     types: [
       GET_MOVIE_INFORMATION_FOR_ASSET_ID_REQUEST,

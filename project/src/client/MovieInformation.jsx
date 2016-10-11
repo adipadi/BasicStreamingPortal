@@ -15,10 +15,7 @@ class MovieInformation extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.id !== this.props.id) {
-      this.getMovieInformation(nextProps);
-    }
-
+    // Insert logic here
   }
 
   getMovieInformation = (props) => {
@@ -43,7 +40,7 @@ class MovieInformation extends React.Component {
     return (
       <div className="movie-information">
             {/*  <StarRatingComponent
-                name="rating" 
+                name="rating"
                 value={calculate value}
                 editing={false}
                 renderStarIcon={() => (<i className="fa fa-star" aria-hidden="true"></i>)}

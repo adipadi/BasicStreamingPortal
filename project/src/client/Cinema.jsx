@@ -62,11 +62,7 @@ class Cinema extends React.Component {
     this.props.actions.showMoviewInformationWithId(id);
   }
 
-  getMovieInformation = (id) => {
-    const asset = _.find(this.props.assets, (a) => a['@id'] === id);
-    const title = asset && asset.title;
-    this.props.actions.getMovieInformation(id, title);
-  }
+// Make function for getting movies
 
   incrementIdleSeconds = () => {
     this.props.actions.setIdleSeconds(this.props.idleSecondsCounter + 1);
