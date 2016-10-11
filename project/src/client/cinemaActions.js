@@ -41,12 +41,7 @@ export function onAssetChange(id) {
   };
 }
 
-export function showMoviewInformationWithId(id) {
-  return {
-    type: SHOW_MOVIE_INFORMATION_WITH_ID,
-    id
-  };
-}
+// Make a function for show  movie information
 
 export function toggleInitialHeader() {
   return {

@@ -62,13 +62,7 @@ export default function featureReducer(state = initialState, action) {
       };
     }
 
-    case CinemaConstants.SHOW_MOVIE_INFORMATION_WITH_ID: {
-      const id = state.showMovieInformationWithId === action.id ? '' : action.id;
-      return {
-        ...state,
-        showMovieInformationWithId: id
-      };
-    }
+    // Make a case for showing movie information with id
 
     case CinemaConstants.TOGGLE_INITIAL_HEADER: {
       return {
