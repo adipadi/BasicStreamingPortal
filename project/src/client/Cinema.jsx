@@ -23,7 +23,7 @@ class Cinema extends React.Component {
   static propTypes = {
     actions: React.PropTypes.object,
     assets: React.PropTypes.array,
-    playingAssetId: React.PropTypes.number,
+    playingAssetId: React.PropTypes.string,
     movieInformationArray: React.PropTypes.array,
     showMovieInformationWithId: React.PropTypes.string,
     movieInformationLoading: React.PropTypes.bool,
@@ -93,7 +93,7 @@ class Cinema extends React.Component {
       </div>
     ) : null;
     const className = this.props.idleSecondsCounter >= 2 &&
-                      this.props.showMovieInformationWithId === false
+                      !this.props.showMovieInformationWithId
                       ? ' fade' : '';
 
     if (this.props.showMovieInformationWithId) {

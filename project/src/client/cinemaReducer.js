@@ -6,7 +6,7 @@ const initialState = {
   assets: [],
   numberOfHits: 0,
   movieInformationArray: [],
-  showMovieInformationWithId: false,
+  showMovieInformationWithId: '',
   assetsLoading: false,
   movieInformationLoading: false,
   showInitialHeader: false,
@@ -75,7 +75,7 @@ export default function featureReducer(state = initialState, action) {
     }
 
     case CinemaConstants.SHOW_MOVIE_INFORMATION_WITH_ID: {
-      const id = state.showMovieInformationWithId === action.id ? false : action.id;
+      const id = state.showMovieInformationWithId === action.id ? '' : action.id;
       return {
         ...state,
         showMovieInformationWithId: id
