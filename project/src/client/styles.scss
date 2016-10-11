@@ -88,14 +88,9 @@ body {
 }
 
 .col {
-  width: 30%;
-  margin: 0.5rem;
-  margin: 0.5rem 0.5rem 0.5rem 0;
-  padding-left: 2rem;
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
+
   &:nth-child(1){
-    flex-grow: 2;
-    border-left: 0;
+
   }
 }
 
@@ -103,43 +98,14 @@ body {
   width: 100%;
   height: 40%;
   position: fixed;
-  background: black;
   z-index: 10;
-  display: flex;
-  color: white;
-  padding-bottom: 1rem;
-  margin-top: 10%;
-  border-radius: 5px;
-  opacity: 0.95;
 
   &:before {
-     content: '';
-     display: block;
-     width: 100%;
-     position: absolute;
-     height: 25%;
-     top: -24%;
-     bottom: -1px; //Tweak for iOS
-     left: 0;
-     right: 0;
-     z-index: 10;
-     pointer-events: none;
-     background: linear-gradient(transparent, black)
+
    }
 
   &:after {
-     content: '';
-     display: block;
-     width: 100%;
-     position: absolute;
-     height: 25%;
-     top: 99%;
-     bottom: -1px; //Tweak for iOS
-     left: 0;
-     right: 0;
-     z-index: 10;
-     pointer-events: none;
-     background: linear-gradient(black, transparent)
+
    }
 }
 
