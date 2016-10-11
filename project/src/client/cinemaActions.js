@@ -13,13 +13,7 @@ export const SHOW_MOVIE_INFORMATION_WITH_ID = 'SHOW_MOVIE_INFORMATION_WITH_ID';
 export const TOGGLE_INITIAL_HEADER = 'TOGGLE_INITIAL_HEADER';
 export const SET_IDLE_SECONDS_COUNTER = 'SET_IDLE_SECONDS_COUNTER';
 
-export function getAssets() {
-  const url = '/api/web/search/categories/2320/assets';
-  return {
-    types: [GET_ASSETS_REQUEST, GET_ASSETS_SUCCESS, GET_ASSETS_FAILURE],
-    promise: Request.get(url)
-  };
-}
+// Make a function that fetches assets
 
 export function getMovieInformation(id, title) {
   const url = '';
