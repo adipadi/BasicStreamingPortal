@@ -8,79 +8,46 @@ html {
 
 body {
   font-family: 'Open Sans', serif;
-  background: black;
   width: 100%;
   height: 100%;
 }
 .cinema {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  background: black;
 
   &.fade {
-    cursor: none;
   }
 }
 
 .playerWrapper {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  width: 100%;
+
 }
 
 .playerContainer {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  align-self: center;
+
 }
 
 .sub-header {
-  margin-bottom: 0px;
+
 }
 
 .initial-load-header {
-  position: absolute;
-  color: white;
-  top: 75%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
-  text-align: center;
-  opacity: 0.7;
 
   i {
-    font-size: 15rem;
   }
 }
 
 .asset-carousel {
-  position: relative;
-  height: 100%;
-  min-height: 100%;
-  margin-top: 100%;
-  padding-top: 50%;
-  display: flex;
-  width: 100%;
-  overflow-x: auto;
-  transition: all 400ms cubic-bezier(.78,.02,.58,1);
-  background: linear-gradient(transparent, black);
-  // transform: translateY(-10rem);
-  opacity: 0.5;
+
   &:hover {
-    opacity: 1;
+
   }
 
   &.fade {
-    opacity: 0;
+
   }
 }
 
 .dv-star-rating {
-  transform: translateY(4px);
-  margin-left: 1rem;
+
 }
 
 .title {
@@ -88,99 +55,43 @@ body {
 }
 
 .col {
-  width: 30%;
-  margin: 0.5rem;
-  margin: 0.5rem 0.5rem 0.5rem 0;
-  padding-left: 2rem;
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
+
   &:nth-child(1){
-    flex-grow: 2;
-    border-left: 0;
+
   }
 }
 
 .movie-information {
-  width: 100%;
-  height: 40%;
-  position: fixed;
-  background: black;
-  z-index: 10;
-  display: flex;
-  color: white;
-  padding-bottom: 1rem;
-  margin-top: 10%;
-  border-radius: 5px;
-  opacity: 0.95;
+
 
   &:before {
-     content: '';
-     display: block;
-     width: 100%;
-     position: absolute;
-     height: 25%;
-     top: -24%;
-     bottom: -1px; //Tweak for iOS
-     left: 0;
-     right: 0;
-     z-index: 10;
-     pointer-events: none;
-     background: linear-gradient(transparent, black)
+
    }
 
   &:after {
-     content: '';
-     display: block;
-     width: 100%;
-     position: absolute;
-     height: 25%;
-     top: 99%;
-     bottom: -1px; //Tweak for iOS
-     left: 0;
-     right: 0;
-     z-index: 10;
-     pointer-events: none;
-     background: linear-gradient(black, transparent)
+
    }
 }
 
 .asset {
-  position: relative;
-  margin: 0.5rem;
-  cursor: pointer;
-  color: white;
-  opacity: 0.65;
-  transition: all 400ms cubic-bezier(.42,0,1,1);
-  max-width: 15rem;
+
   &:hover {
-    opacity: 1;
+
   }
 
   i {
-    position: absolute;
-    font-size: 5rem;
-    left: 50%;
-    top: 50%;
-    transform: translate3d(-50%, -50%, 0);
-    opacity: 0.6;
-    transition: all 300ms cubic-bezier(.42,0,1,1);
 
     &:hover {
-      opacity: 1;
+
     }
   }
 }
 
 .info-wrapper {
-  margin: 2rem;
-  width: 80%;
-  display: flex;
+
 }
 
 .cover {
-  height: 10rem;
-  width: 15rem;
-  background-size: cover;
-  border-radius: 4px;
 }
 
 .vimond-player {
@@ -197,27 +108,15 @@ body {
 }
 
 .poster {
-  background-size: cover;
-  height: 100%;
-  margin: 0.5rem;
+
 }
 
 .cs-loader {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
+
 }
 
 .cs-loader-inner {
-  transform: translateY(-50%);
-  top: 50%;
-  position: absolute;
-  width: calc(100% - 200px);
-  color: #FFF;
-  padding: 0 100px;
-  text-align: center;
+
 }
 
 .cs-loader-inner label {
@@ -296,30 +195,19 @@ body {
 
 
 .animate-movie-information-appear {
-  opacity: 0;
 
   &.animate-movie-information-appear-active {
-    transition: all 250ms cubic-bezier(.42,0,1,1);
-    opacity: 1;
   }
-
 }
 
 .animate-movie-information-enter {
-  opacity: 0;
 
   &.animate-movie-information-enter-active {
-    transition: all 250ms cubic-bezier(.42,0,1,1);
-    opacity: 1;
   }
-
 }
 
 .animate-movie-information-leave {
-  opacity: 1;
 
   &.animate-movie-information-leave-active {
-    transition: all 250ms cubic-bezier(.42,0,1,1);
-    opacity: 0;
   }
 }
