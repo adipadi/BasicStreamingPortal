@@ -33,7 +33,7 @@ class Cinema extends React.Component {
   };
 
   componentDidMount() {
-    this.props.actions.getAssets();
+    // Make a call to fetch assets
     window.addEventListener('scroll', this.checkScrollBottom, false);
     window.addEventListener('scroll', this.resetIdleCounter, false);
     window.addEventListener('mousemove', this.resetIdleCounter, false);
