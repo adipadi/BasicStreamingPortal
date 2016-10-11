@@ -7,7 +7,8 @@ class AssetCarousel extends React.Component {
     assets: React.PropTypes.array,
     onAssetChange: React.PropTypes.func,
     loading: React.PropTypes.bool,
-    playingAssetId: React.PropTypes.string
+    playingAssetId: React.PropTypes.string,
+    className: React.PropTypes.string
   };
 
   componentDidMount() {
@@ -42,11 +43,12 @@ class AssetCarousel extends React.Component {
     }
 
     return (
-      <div className="asset-carousel">
+      <div className={`asset-carousel ${this.props.className}`}>
         {assets.map(a => {
           const imgUrl = (a.imageVersions && a.imageVersions.image && a.imageVersions.image.url) ||
            'http://images.hngn.com/data/images/full/134342/mr-robot.jpg';
           const isPlaying = a['@id'] === this.props.playingAssetId ? 'fa-pause-circle' : 'fa-play-circle';
+          console.log("I AM NOW,", a['@id'], this.props.playingAssetId);
           return (
             <div key={a['@id']} className="asset" onClick={this.onClick.bind(this, a['@id'])}
               onMouseOver={this.onMouseOver.bind(this, a['@id'])}

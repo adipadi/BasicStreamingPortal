@@ -2,14 +2,15 @@ import * as CinemaConstants from './cinemaActions';
 import _ from 'lodash';
 
 const initialState = {
-  playingAssetId: 0,
+  playingAssetId: '6967',
   assets: [],
   numberOfHits: 0,
   movieInformationArray: [],
   showMovieInformationWithId: false,
   assetsLoading: false,
   movieInformationLoading: false,
-  showInitialHeader: false
+  showInitialHeader: false,
+  idleSecondsCounter: 0
 };
 
 export default function featureReducer(state = initialState, action) {
@@ -85,6 +86,13 @@ export default function featureReducer(state = initialState, action) {
       return {
         ...state,
         showInitialHeader: !state.showInitialHeader
+      };
+    }
+
+    case CinemaConstants.SET_IDLE_SECONDS_COUNTER: {
+      return {
+        ...state,
+        idleSecondsCounter: action.value
       };
     }
 

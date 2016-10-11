@@ -23,11 +23,6 @@ class MovieInformation extends React.Component {
 
   getMovieInformation = (props) => {
     if (!props.movieData && props.getMovieInformation && props.id && !props.loading) {
-      // const justRandomArray = ['force+awakens', 'forrest+gump', 'shoot+em+up', 'superman+returns',
-      // 'the+phantom+menace', 'scary+movie'];
-      // const min = Math.ceil(0);
-      // const max = Math.floor(6);
-      // const nr = Math.floor(Math.random() * (max - min)) + min;
       props.getMovieInformation(props.id);
     }
   }
@@ -70,12 +65,8 @@ class MovieInformation extends React.Component {
           <div className="col">
             <div className="awards"><h3 className="sub-header">Awards</h3> <br/> {movieData.Awards}</div>
             <div className="director"><h3 className="sub-header">Director</h3> <br/> {movieData.Director}</div>
-
           </div>
-
-
         </div>
-
       </div>
     );
   }

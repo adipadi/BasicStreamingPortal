@@ -1,8 +1,5 @@
 import React from 'react';
 
-// const itemId = query.itemId;
-// const startPosition = query.startPosition;
-
 const replacements = [{
   match: /("avc1\.4d001f")+/g,
   replacement: '"avc1.4d401f"'
@@ -13,13 +10,6 @@ const replacements = [{
   match: /<Representation id="p0a1r1"(.|\n)*?<\/Representation>/m,
   replacement: ' '
 }];
-
-// if (query && query.audiocodec) {
-//     replacements.push({
-//         match: /("mp4a\.40\.2")+/g,
-//         replacement: '"mp4a.40.5"'
-//     });
-// }
 
 const config = {
   videoEngine: {
@@ -49,8 +39,7 @@ class Player extends React.Component {
   componentDidMount() {
     if (window.vimond.player) {
       const player = window.vimond.player;
-      const query = player.getQueryParametersAsObject();
-      const assetId = this.props.assetId || query.assetId || 6967;
+      const assetId = this.props.assetId;
 
       player.insert({
         autoplay: true,
@@ -58,7 +47,6 @@ class Player extends React.Component {
       },
         {
           mainContainer: this.playerContainer,
-          // videoElement: "videoElement"
         },
       config,
       dependencies)
@@ -75,7 +63,7 @@ class Player extends React.Component {
       const playerApi = window.playerApi;
       const assetId = nextProps.assetId;
       playerApi.changePlayback(assetId);
-      playerApi.start();
+      setTimeout(() => { playerApi.start(); }, 10);
     }
   }
 

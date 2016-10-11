@@ -17,6 +17,7 @@ function mapStateToProps(state) {
   return { ...state.cinemaReducer };
 }
 
+
 class Cinema extends React.Component {
 
   static propTypes = {
@@ -27,17 +28,30 @@ class Cinema extends React.Component {
     showMovieInformationWithId: React.PropTypes.string,
     movieInformationLoading: React.PropTypes.bool,
     assetsLoading: React.PropTypes.bool,
-    showInitialHeader: React.PropTypes.bool
+    showInitialHeader: React.PropTypes.bool,
+    idleSecondsCounter: React.PropTypes.number
   };
 
   componentDidMount() {
     this.props.actions.getAssets();
     window.addEventListener('scroll', this.checkScrollBottom, false);
+    window.addEventListener('scroll', this.resetIdleCounter, false);
+    window.addEventListener('mousemove', this.resetIdleCounter, false);
+    window.addEventListener('keypress', this.resetIdleCounter, false);
+    window.addEventListener('click', this.resetIdleCounter, false);
+    window.mouseIdleInterval = setInterval(this.incrementIdleSeconds, 1000);
+
   }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.checkScrollBottom, false);
+    window.removeEventListener('scroll', this.resetIdleCounter, false);
+    window.removeEventListener('mousemove', this.resetIdleCounter, false);
+    window.removeEventListener('keypress', this.resetIdleCounter, false);
+    window.removeEventListener('click', this.resetIdleCounter, false);
+    clearInterval(window.mouseIdleInterval);
   }
+
 
   onAssetChange = (id) => {
     this.props.actions.onAssetChange(id);
@@ -45,10 +59,6 @@ class Cinema extends React.Component {
   }
 
   onAssetHover = (id) => {
-    const exists = _.find(this.props.movieInformationArray, m => m.id === id);
-    if (!exists) {
-      // this.props.actions.getMovieInformation(id, 'force+awakens');
-    }
     this.props.actions.showMoviewInformationWithId(id);
   }
 
@@ -56,6 +66,14 @@ class Cinema extends React.Component {
     const asset = _.find(this.props.assets, (a) => a['@id'] === id);
     const title = asset && asset.title;
     this.props.actions.getMovieInformation(id, title);
+  }
+
+  incrementIdleSeconds = () => {
+    this.props.actions.setIdleSeconds(this.props.idleSecondsCounter + 1);
+  }
+
+  resetIdleCounter = () => {
+    this.props.actions.setIdleSeconds(0);
   }
 
   checkScrollBottom = () => {
@@ -74,6 +92,9 @@ class Cinema extends React.Component {
         <i className="fa fa-arrow-down fa-6" aria-hidden="true"/>
       </div>
     ) : null;
+    const className = this.props.idleSecondsCounter >= 2 &&
+                      this.props.showMovieInformationWithId === false
+                      ? ' fade' : '';
 
     if (this.props.showMovieInformationWithId) {
       const movieData = _.find(this.props.movieInformationArray, m => m.assetId === this.props.showMovieInformationWithId);
@@ -86,7 +107,7 @@ class Cinema extends React.Component {
       );
     }
     return (
-      <div className="cinema">
+      <div className={`cinema ${className}`}>
         <ReactCSSTransitionGroup
           transitionAppearTimeout={500}
           transitionEnterTimeout={500}
@@ -100,9 +121,11 @@ class Cinema extends React.Component {
         {initialHeader}
         {
           this.props.assetsLoading ?
-          <Loading title="Loading assets"/> :
-          <AssetCarousel playingAssetId={this.props.playingAssetId}
-            onAssetHover={this.onAssetHover} assets={this.props.assets} onAssetChange={this.onAssetChange}/>
+            <Loading title="Loading assets"/> :
+            <AssetCarousel className={className}
+              playingAssetId={this.props.playingAssetId}
+              onAssetHover={this.onAssetHover} assets={this.props.assets}
+              onAssetChange={this.onAssetChange}/>
         }
       </div>
     );

@@ -1,90 +1,18 @@
 {
-  "name": "vimond-cms",
-  "version": "0.9.0",
+  "name": "uib-flix",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "node src/server/server.js",
-    "start-dev": "better-npm-run start:dev",
-    "start-backend": "better-npm-run start:backend",
-    "start-dev-db": "better-npm-run start:devDb",
-    "start-dev-no-jwt": "better-npm-run start:dev-no-jwt",
-    "migrate-start": "NODE_ENV=migrate node migration/migrate.js && NODE_ENV=production node src/server/server.js",
-    "test": "better-npm-run test:all",
-    "test-server": "better-npm-run test:server",
-    "test-frontend": "better-npm-run test:frontend",
-    "test:watch": "npm test -- --watch",
-    "deploy": "better-npm-run build:prod",
     "dev": "better-npm-run build:dev",
-    "migrate": "better-npm-run migrate",
-    "migrate-dev": "better-npm-run migrate-dev",
-    "deploy:imageselector": "better-npm-run build:imageselector",
-    "deploy:imagecropper": "better-npm-run build:imagecropper",
-    "lint": "eslint lib/** src/client/** routes/** --ext .js --ext .jsx || true",
-    "lint-backend": "./node_modules/.bin/eslint src/server/ lib",
-    "outdated": "node ./scripts/pkg-outdated.js minor=5",
-    "revision": "sh scripts/update_revision.sh > revision.json",
-    "docs": "jsdoc -c jsdoc.json ./src/client/**",
-    "generate-docs-and-deploy": "jsdoc -c jsdoc.json ./src/client/** && ssh ubuntu@files.vimond.com 'mkdir -p /var/www/default/htdocs/files/docs/vimond-cms' && scp -r ./dist/docs/* ubuntu@files.vimond.com:/var/www/default/htdocs/files/docs/vimond-cms"
+    "start-backend": "better-npm-run start:backend"
   },
   "betterScripts": {
-    "start:dev": {
-      "command": "echo \"\n\n***\nDEPRECATED! USE npm run start-backend INSTEAD\n***\n\n\" "
-    },
     "start:backend": {
       "command": "node src/server/server.js",
       "env": {
         "NODE_ENV": "development",
-        "CMS_PORT": "3080",
-        "CMS_API_SECRET": "{SSHA}7cFtZruWJq7itGdtgI28K7/wRm07qybrm/T28w==",
-        "CMS_SMTP_PASSWORD": "1f2unf1fglq6",
-        "CMS_TENANTS": "[{'value': 'vimond', 'label': 'Vimond' },{ 'value': 'comcast', 'label': 'Comcast' },{ 'value': 'comcastuniversity', 'label': 'Comcast University'}]",
-        "CMS_FEATURE_ADMIN_MODULE": "on",
-        "CMS_FEATURE_LICENSE_MODULE": "on",
-        "CMS_VIMOND_CMS_URL_EXTERNAL": "http://localhost:3080/",
-        "VCC_IMAGE_BANK_SELECTOR_FEATURE_TOGGLE": "true",
-        "FEATURE_TOGGLE_IMAGE_CROPPER": "true",
-        "FEATURE_TOGGLE_IMAGE_SERVICE_BEARER_TOKEN": "true",
-        "CMS_JWT_SECRET": "thisisasecret"
-      }
-    },
-    "start:dev-no-jwt": {
-      "command": "npm run revision && nodemon src/server/server.js",
-      "env": {
-        "NODE_ENV": "development",
-        "CMS_PORT": "3080",
-        "CMS_API_SECRET": "{SSHA}7cFtZruWJq7itGdtgI28K7/wRm07qybrm/T28w==",
-        "CMS_SMTP_PASSWORD": "1f2unf1fglq6",
-        "CMS_TENANTS": "[{'value': 'vimond', 'label': 'Vimond' },{ 'value': 'comcast', 'label': 'Comcast' },{ 'value': 'comcastuniversity', 'label': 'Comcast University'}]",
-        "CMS_FEATURE_ADMIN_MODULE": "on",
-        "CMS_FEATURE_LICENSE_MODULE": "on",
-        "VCC_IMAGE_BANK_SELECTOR_FEATURE_TOGGLE": "true",
-        "FEATURE_TOGGLE_IMAGE_CROPPER": "true"
-      }
-    },
-    "start:devDb": {
-      "command": "npm run revision && node src/server/server.js",
-      "env": {
-        "NODE_ENV": "development",
-        "CMS_PORT": "3080",
-        "CMS_API_SECRET": "{SSHA}7cFtZruWJq7itGdtgI28K7/wRm07qybrm/T28w==",
-        "CMS_SMTP_PASSWORD": "1f2unf1fglq6",
-        "CMS_TENANTS": "[{'value': 'vimond', 'label': 'Vimond' },{ 'value': 'comcast', 'label': 'Comcast' },{ 'value': 'comcastuniversity', 'label': 'Comcast University'}]",
-        "CMS_FEATURE_ADMIN_MODULE": "on",
-        "CMS_FEATURE_LICENSE_MODULE": "on",
-        "CMS_LICENSE_SERVICE_URL": "http://localhost:3081/",
-        "CMS_LICENSE_SERVICE_URL_EXTERNAL": "http://localhost:3081/",
-        "CMS_VIMOND_CMS_URL_EXTERNAL": "http://localhost:3080/",
-        "CMS_DB_USER": "postgres",
-        "CMS_DB_PASSWORD": "",
-        "CMS_DB_HOST": "localhost",
-        "CMS_DB_DBNAME": "massive",
-        "CMS_JWT_SECRET": "thisisasecret"
-      }
-    },
-    "build:prod": {
-      "command": "gulp cleanAndCopy && webpack -p --progress --config webpack.prod.config.js && gulp copyPublic && gulp copyDist && gulp validateBuild",
-      "env": {
-        "NODE_ENV": "production"
+        "CMS_PORT": "3080"
       }
     },
     "build:dev": {
@@ -93,74 +21,16 @@
         "NODE_ENV": "development",
         "CMS_LICENSE_SERVICE_URL": "http://localhost:3081/"
       }
-    },
-    "migrate": {
-      "command": "node migration/migrate.js",
-      "env": {
-        "NODE_ENV": "migrate"
-      }
-    },
-    "migrate-dev": {
-      "command": "node migration/migrate.js",
-      "env": {
-        "NODE_ENV": "migrate",
-        "CMS_DB_USER": "postgres",
-        "CMS_DB_PASSWORD": "",
-        "CMS_DB_HOST": "localhost",
-        "CMS_DB_DBNAME": "massive"
-      }
-    },
-    "build:imageselector": {
-      "command": "gulp cleanAndCopy && webpack -p --progress --config webpack.imageselector.prod.config.js",
-      "env": {
-        "NODE_ENV": "production"
-      }
-    },
-    "build:imagecropper": {
-      "command": "gulp cleanAndCopy && webpack -p --progress --config webpack.imagecropper.prod.config.js",
-      "env": {
-        "NODE_ENV": "production"
-      }
-    },
-    "test:frontend": {
-      "command": "webpack --config webpack.test.config.js && ./node_modules/mocha/bin/mocha -r mock-local-storage -r ./test-setup ./tmp/testbundle.js --compilers js:babel-core/register --recursive"
-    },
-    "test:server": {
-      "command": "./node_modules/mocha/bin/mocha test/server/**/*-test.js",
-      "env": {
-        "NODE_ENV": "test",
-        "FEATURE_TOGGLE_USE_LOCAL_NAVIGATION": "true"
-      }
-    },
-    "test:all": {
-      "command": "./node_modules/mocha/bin/mocha test/**/*-test.js",
-      "env": {
-        "NODE_ENV": "test",
-        "FEATURE_TOGGLE_USE_LOCAL_NAVIGATION": "true"
-      }
     }
   },
   "dependencies": {
-    "assert": "1.4.1",
-    "async": "2.0.1",
-    "autoprefixer": "6.5.0",
-    "aws-sdk": "^2.4.0",
     "babel-plugin-transform-react-jsx": "6.8.0",
     "babel-polyfill": "6.16.0",
     "babelify": "7.3.0",
     "body-parser": "1.15.2",
-    "chalk": "*",
-    "classnames": "2.2.5",
     "cookie-parser": "1.4.3",
-    "crypto": "0.0.3",
-    "debug": "2.2.0",
-    "eslint-loader": "^1.4.1",
     "express": "4.14.0",
-    "express-winston": "2.0.0",
     "extract-text-webpack-plugin": "^1.0.1",
-    "find-parent": "2.0.2",
-    "highcharts": "4.2.7",
-    "history": "4.2.0",
     "jade": "1.11.0",
     "jade-html-loader": "0.0.3",
     "jsdoc": "3.4.1",
@@ -168,14 +38,6 @@
     "jsonwebtoken": "7.1.9",
     "jsx-loader": "0.13.2",
     "lodash": "4.16.2",
-    "md5": "2.2.1",
-    "moment": "2.15.1",
-    "moment-timezone": "^0.5.5",
-    "morgan": "1.7.0",
-    "mousetrap": "*",
-    "multer": "^1.1.0",
-    "object-assign": "4.1.0",
-    "query-string": "4.2.3",
     "react": "^15.3.2",
     "react-addons-css-transition-group": "15.3.2",
     "react-addons-test-utils": "15.3.2",
@@ -196,37 +58,10 @@
     "react-tooltip": "*",
     "redux": "3.6.0",
     "request": "2.75.0",
-    "scroll-into-view-if-needed": "1.0.2",
     "serve-favicon": "2.3.0",
     "socket.io": "^1.4.8",
     "socket.io-client": "*",
-    "socketio-jwt": "^4.5.0",
-    "svg-inline-loader": "0.7.1",
-    "url-parse": "*",
-    "validate.js": "0.10.0",
-    "vimond-react-icons": "1.0.57",
-    "vimond-web-components": "1.1.26",
-    "winston": "^2.2.0",
-    "xhr": "2.2.2",
-    "xmlhttprequest": "1.8.0"
-  },
-  "jest": {
-    "collectCoverage": true,
-    "testFileExtensions": [
-      "js",
-      "jsx"
-    ],
-    "moduleFileExtensions": [
-      "js",
-      "jsx"
-    ],
-    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
-    "unmockedModulePathPatterns": [
-      "<rootDir>/node_modules/react",
-      "<rootDir>/node_modules/react-dom",
-      "<rootDir>/node_modules/react-addons-test-utils",
-      "<rootDir>/node_modules/fbjs"
-    ]
+    "svg-inline-loader": "0.7.1"
   },
   "devDependencies": {
     "babel-core": "6.17.0",
