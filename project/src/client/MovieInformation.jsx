@@ -39,7 +39,7 @@ class MovieInformation extends React.Component {
 
     return (
       <div className="movie-information">
-        // Display the id for this component
+        {/*Display the id for this component*/}
             {/*  <StarRatingComponent
                 name="rating"
                 value={calculate value}
