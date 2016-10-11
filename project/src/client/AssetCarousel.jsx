@@ -48,7 +48,6 @@ class AssetCarousel extends React.Component {
           const imgUrl = (a.imageVersions && a.imageVersions.image && a.imageVersions.image.url) ||
            'http://images.hngn.com/data/images/full/134342/mr-robot.jpg';
           const isPlaying = a['@id'] === this.props.playingAssetId ? 'fa-pause-circle' : 'fa-play-circle';
-          console.log("I AM NOW,", a['@id'], this.props.playingAssetId);
           return (
             <div key={a['@id']} className="asset" onClick={this.onClick.bind(this, a['@id'])}
               onMouseOver={this.onMouseOver.bind(this, a['@id'])}
