@@ -59,7 +59,7 @@ class Cinema extends React.Component {
   }
 
   onAssetHover = (id) => {
-    this.props.actions.showMoviewInformationWithId(id);
+    this.props.actions.showMovieInformationWithId(id);
   }
 
 // Make function for getting movies
