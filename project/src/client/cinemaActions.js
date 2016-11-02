@@ -41,7 +41,7 @@ export function onAssetChange(id) {
   };
 }
 
-export function showMoviewInformationWithId(id) {
+export function showMovieInformationWithId(id) {
   return {
     type: SHOW_MOVIE_INFORMATION_WITH_ID,
     id
