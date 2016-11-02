@@ -61,7 +61,8 @@
     "serve-favicon": "2.3.0",
     "socket.io": "^1.4.8",
     "socket.io-client": "*",
-    "svg-inline-loader": "0.7.1"
+    "svg-inline-loader": "0.7.1",
+    "xhr": "*"
   },
   "devDependencies": {
     "babel-core": "6.17.0",
