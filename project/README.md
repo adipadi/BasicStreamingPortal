@@ -1,4 +1,4 @@
-# UiBFlix
+# BasicStreamingPortal
 
 The next generation streaming portal for students!
 
