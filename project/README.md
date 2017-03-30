@@ -25,7 +25,7 @@ To get the most out of the time spent at the workshop, you should prepare by ins
 
 ## Installing project
 1. Install node
-2. Run npm install
+2. Run npm install inside the 'project' folder
 3. Checkout branch oppgave_1_b (run the command git checkout oppgave_1_b)
 3. In one terminal window: npm run dev
 4. In a second terminal window: npm run start-backend
